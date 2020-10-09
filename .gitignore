@@ -17,6 +17,8 @@ node_modules/
 
 # remove python environment
 env/
+.env.*
+.env
 
 *.pyc
 __pycache__
