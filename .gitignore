@@ -4,3 +4,14 @@ Team*.zip
 *.crt
 *.key
 *.ovpn
+
+.env
+
+# remove MacOS files
+.DS_Store
+*.swp
+*.swo
+*.lnk
+
+node_modules/
+
