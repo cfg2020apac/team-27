@@ -2,7 +2,7 @@ import React from 'react';
 import './Dashboard.css';
 import { Container, Jumbotron, Card, Alert, Col, Row, ProgressBar } from 'react-bootstrap';
 import "react-step-progress-bar/styles.css";
-import circleOutline from '../img/circle-outline-black.svg';
+// import circleOutline from '../img/circle-outline-black.svg';
 
 export default function Dashboard(){
     return (

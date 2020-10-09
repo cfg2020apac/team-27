@@ -6,10 +6,11 @@ import {
     BrowserRouter as Router,
     Switch,
     Redirect,
+    useParams,
     Link,
 } from "react-router-dom";
 import { Navbar, Nav, NavItem,Dropdown,DropdownButton, NavDropdown } from "react-bootstrap";
-import JA from "../JA.png";
+import JA from "./JA.png";
 import Home from "./Home";
 import Dashboard from "./Dashboard";
 import Meetings from "./Meetings";
@@ -21,7 +22,9 @@ import Announcement from "./Announcement/Announcement";
 import SingleAnnouncement from "./Announcement/SingleAnnouncement";
 import StudentProgress from "./StudentProgress";
 
-function Root() {
+function Root(props) {
+    let { userType } = useParams();
+    console.log("UserType:",userType)
     let match = useRouteMatch();
     const history = useHistory();
     const notifications = [
@@ -50,26 +53,16 @@ function Root() {
         }
     }
 
-    const navToNotifcations = ()=>{
-        // history.push("/root/Announcements")
-        // history.push("/Announcements")
-        // console.log("Notifications:",history)
-    }
     return (
         <div>
             <Router>
                 <Navbar bg="light" expand="lg">
-                    <Navbar.Brand href="/root">JA Hong Kong</Navbar.Brand>
+                    <Navbar.Brand href={`${match.url}`}>JA Hong Kong</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
                             <NavItem>
-                                <Nav.Link href={`${match.url}/Home`}>
-                                    Home
-                                </Nav.Link>
-                            </NavItem>
-                            <NavItem>
-                                <Nav.Link href={`${match.url}/Dashboard`}>
+                                <Nav.Link href={`${match.url}`}>
                                     Dashboard
                                 </Nav.Link>
                             </NavItem>
@@ -94,7 +87,7 @@ function Root() {
                                 </Nav.Link>
                             </NavItem>
                         </Nav>
-                        <span style={{paddingRight:"30px"}}>
+                        <span style={{paddingRight:"10px"}}>
                             <NavDropdown title={<Bell color="#000" size={27}/>} id="basic-nav-dropdown" cssClass='e-caret-hide'>
                             {
                                 notifications.map((e)=>{
@@ -112,23 +105,13 @@ function Root() {
                                 paddingLeft: "20px",
                             }}
                         >
-                            Kevin - Student
+                            Kevin - {userType}
                         </span>
                         <DoorClosed size={27}/>
                     </Navbar.Collapse>
                 </Navbar>
                 <Switch>
-                    <Route
-                        exact
-                        path={`${match.path}`}
-                        render={() => {
-                            return <Redirect to={`${match.path}/Home`} />;
-                        }}
-                    ></Route>
-                    <Route exact path={`${match.path}/Home`}>
-                        <Home />
-                    </Route>
-                    <Route path={`${match.path}/Dashboard`}>
+                    <Route exact path={`${match.path}`}>
                         <Dashboard />
                     </Route>
                     <Route path={`${match.path}/Meetings`}>

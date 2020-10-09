@@ -12,6 +12,21 @@ const toDoStyle = { background: "white", color: "black", opacity: "0.5" };
 const finishedStyle = { background: "white", color: "black", opacity: "0.5" };
 const currStyle = { background: "white", color: "black" , opacity: "1"};
 
+const nummap = {
+    jan: 1,
+    feb: 2,
+    mar: 3,
+    apr: 4,
+    may: 5,
+    jun: 6,
+    jul: 7,
+    aug: 8,
+    sep: 9,
+    oct: 10,
+    nov: 11,
+    dec: 12,
+};
+
 export default function Milestones() {
     const [contents, setContents] = useState([]);
 
@@ -51,7 +66,13 @@ export default function Milestones() {
                         }
                     })
                     .sort((x, y) => {
-                        return y.type.localeCompare(x.type);
+                        let xs = x.date.split(" ");
+                        let ys = y.date.split(" ");
+                        xs[0] =
+                            nummap[xs[0].substring(0, 3).toLowerCase()] || 0;
+                        ys[0] =
+                            nummap[ys[0].substring(0, 3).toLowerCase()] || 0;
+                        return ys[0] - xs[0] || ys[1] - xs[1];
                     })
             );
         };
