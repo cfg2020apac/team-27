@@ -10,6 +10,9 @@ dirname = os.path.dirname(__file__)
 filename = os.path.join(dirname, 'env-firebase-private.json')
 cred = credentials.Certificate(filename)
 
+credential_path = os.path.join(dirname, 'env.json')
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credential_path
+
 __all__ = ['send_to_firebase', 'update_firebase_snapshot']
 
 initialize_app(cred)
