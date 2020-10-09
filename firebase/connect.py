@@ -10,8 +10,9 @@ import firebase_admin
 def connect(cred_file: str):
     ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
     cred_path = os.path.join(ROOT_DIR, cred_file)
-    cred = credentials.Certificate(cred_path)
-    firebase_admin.initialize_app(cred)
+    if not firebase_admin._apps:
+        cred = credentials.Certificate(cred_path)
+        firebase_admin.initialize_app(cred)
 
 def add_to_firebase(data, collection : str):
     """
