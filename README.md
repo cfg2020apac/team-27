@@ -10,5 +10,6 @@
 5. Ensure the venv is ignored.
 
 ## Firebase setup
+0. (OPTIONAL, you should be able to connect to firebase after setting up Python)
 1. Prepare `firebase/env-firebase-private.json` and `firebase/env.json`.
 2. Set `GOOGLE_APPLICATION_CREDENTIALS=<absolute path of firebase/env.json>` (environment variable).
