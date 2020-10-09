@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
     useRouteMatch,
     useHistory,
@@ -10,10 +10,25 @@ import {
 } from 'react-router-dom';
 import {Container,Jumbotron,Card,Row, Col} from 'react-bootstrap';
 import { DoorClosed, PersonCircle,Bell,StarFill,CheckCircle,ExclamationCircleFill } from "react-bootstrap-icons";
+import axios from 'axios';
 
 export default function TableAnnouncement(){
 
     const match = useRouteMatch();
+
+    const [contents, setContents] = useState([]);
+
+    useEffect(() => {
+        const getAnnouncements = async () => {
+            const res = await axios.get("http://localhost:8000/announcements/");
+            console.log(res.data);
+            setContents(res.data);
+        };
+
+        if (!contents.length) {
+            getAnnouncements();
+        }
+    }, []);
 
     const tableHeading = [
         "Title",
@@ -66,7 +81,7 @@ export default function TableAnnouncement(){
             <Container>
                 <h1>Announcements</h1>
                 {
-                    dummyAnnouncements.map((e,index)=>{
+                    contents.map((e,index)=>{
                         return(
                             <Link to={`${match.path}/${e.id}`}>
                                 <div style={{paddingBottom:"20px"}}> 

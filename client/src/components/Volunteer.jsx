@@ -1,12 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Dashboard.css';
-import { Container, Jumbotron, ProgressBar, Card, Col, Accordion, Badge, Form, Row } from 'react-bootstrap';
+import { Container, Jumbotron, ProgressBar, Card, Col, Alert, Accordion, Badge, Form, Row, Button } from 'react-bootstrap';
 import StepProgressBar from 'react-step-progress';
 import 'react-step-progress/dist/index.css';
 import './styles.css'
 import flareImg from '../img/flare.png';
+import axios from 'axios';
 
 export default function DashboardVolunteer(){
+
+    const [callStatus, setCallStatus] = useState(false);
+
+    const callAnnouncement = () => {
+        axios.post("http://localhost:8000/announcements-add/", { 
+            body: "Please hand in your worksheets as soon as possible as this is assessed!",
+            date: "Oct 4, 2020",
+            description:"Worksheet is due at 11:59 pm tonight.",
+            title: "Worksheet is due soon!",
+            type: "bad",
+            // id: "3"
+        })
+        .then(res => {
+            if (res) {
+                setCallStatus(true);
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
     return (
         <Container fluid>
             <Jumbotron align="left" text="light" className="module" style={{backgroundImage: 'url(' + flareImg + ')', backgroundSize: "cover"}}>
@@ -25,6 +47,8 @@ export default function DashboardVolunteer(){
                     <ProgressBar variant="success" now={80} label={`${80}%`}/>
                     <ProgressBar animated variant="info" now={20} label={`${20}%`}/>
                 </ProgressBar>
+                <Button variant="danger" onClick={callAnnouncement} className="mt-2" size="sm">Notify Students</Button>
+                {callStatus && <Alert className="mt-2" variant='success'>Announcement was successfully sent.</Alert>}
                 <div className="mb-4"></div>
                 <div className="d-flex flex-row justify-content-between mb-2">
                     <p class="mb-0">Worksheet 2</p>
@@ -34,6 +58,7 @@ export default function DashboardVolunteer(){
                     <ProgressBar variant="success" now={10} label={`${10}%`}/>
                     <ProgressBar animated variant="info" now={90} label={`${90}%`}/>
                 </ProgressBar>
+                <Button className="mt-2" size="sm">Notify Students</Button>
             </Jumbotron>
 
             <Jumbotron align="left" className="module">

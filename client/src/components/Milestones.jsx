@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Button, Spinner } from "react-bootstrap";
+import { Button, Spinner, Row } from "react-bootstrap";
 import { FaCheckCircle, FaExclamationCircle } from "react-icons/fa";
 import {
     VerticalTimeline,
@@ -149,7 +149,7 @@ export default function Milestones() {
                                     <h5 className="vertical-timeline-element-title">
                                         {t.content.title}
                                     </h5>
-                                    <Button>Submit Worksheet</Button>
+                                    {/* <Button>Submit Worksheet</Button> */}
                                 </div>
                                 <h6
                                     className="text-muted mt-2"
@@ -157,6 +157,8 @@ export default function Milestones() {
                                 >
                                     {t.content.desc}
                                 </h6>
+
+                                <h5>Videos</h5>
                                 <ul>
                                     {t.content.links.map((lk) => (
                                         <li>
@@ -164,6 +166,12 @@ export default function Milestones() {
                                         </li>
                                     ))}
                                 </ul>
+
+                                <h5>Worksheets</h5>
+                                <div className="d-flex flex-row align-items-center justify-content-between">
+                                    <h6>Worksheet 1</h6>
+                                    <Button>Submit</Button>
+                                </div>
                             </div>
                         </VerticalTimelineElement>
                     );
