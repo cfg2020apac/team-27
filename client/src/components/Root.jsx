@@ -13,7 +13,8 @@ import Home from'./Home';
 import Dashboard from './Dashboard';
 import Meetings from './Meetings';
 import MyProfile from './MyProfile';
-import {DoorClosed,PersonCircle} from 'react-bootstrap-icons';
+import Milestones from './Milestones';
+import {DoorClosed} from 'react-bootstrap-icons';
 
 function Root(){
     let match = useRouteMatch();
@@ -32,6 +33,7 @@ function Root(){
                             <NavItem><Nav.Link href={`${match.url}/Dashboard`}>Dashboard</Nav.Link></NavItem>
                             <NavItem><Nav.Link href={`${match.url}/Meetings`}>Meetings</Nav.Link></NavItem>
                             <NavItem><Nav.Link href={`${match.url}/MyProfile`}>MyProfile</Nav.Link></NavItem>
+                            <NavItem><Nav.Link href={`${match.url}/Milestones`}>Milestones</Nav.Link></NavItem>
                         </Nav>
                         <PersonCircle  size={30}/>
                         <span style={{paddingRight:"20px",paddingLeft:"20px"}}>
@@ -58,6 +60,9 @@ function Root(){
                     </Route>
                     <Route path={`${match.path}/MyProfile`}>
                         <MyProfile/>
+                    </Route>
+                    <Route path={`${match.path}/Milestones`}>
+                        <Milestones/>
                     </Route>
                 </Switch>
             </Router>
