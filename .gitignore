@@ -15,3 +15,8 @@ Team*.zip
 
 node_modules/
 
+# remove python environment
+env/
+
+*.pyc
+__pycache__
