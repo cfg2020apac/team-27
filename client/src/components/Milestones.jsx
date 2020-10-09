@@ -8,8 +8,24 @@ import {
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 
-const toDoStyle = { background: "rgb(255,140,0)", color: "#fff" };
-const finishedStyle = { background: "rgb(16, 204, 82)", color: "#fff" };
+const toDoStyle = { background: "white", color: "black", opacity: "0.5" };
+const finishedStyle = { background: "white", color: "black", opacity: "0.5" };
+const currStyle = { background: "white", color: "black" , opacity: "1"};
+
+const nummap = {
+    jan: 1,
+    feb: 2,
+    mar: 3,
+    apr: 4,
+    may: 5,
+    jun: 6,
+    jul: 7,
+    aug: 8,
+    sep: 9,
+    oct: 10,
+    nov: 11,
+    dec: 12,
+};
 
 export default function Milestones() {
     const [contents, setContents] = useState([]);
@@ -29,6 +45,15 @@ export default function Milestones() {
                                     desc: t.desc,
                                 },
                             };
+                        } else if (t.type === "current") {
+                            return {
+                                type: "current",
+                                date: t.date,
+                                content: {
+                                    title: t.title,
+                                    desc: t.desc,
+                                },
+                            };
                         } else {
                             return {
                                 type: "todo",
@@ -41,7 +66,13 @@ export default function Milestones() {
                         }
                     })
                     .sort((x, y) => {
-                        return y.type.localeCompare(x.type);
+                        let xs = x.date.split(" ");
+                        let ys = y.date.split(" ");
+                        xs[0] =
+                            nummap[xs[0].substring(0, 3).toLowerCase()] || 0;
+                        ys[0] =
+                            nummap[ys[0].substring(0, 3).toLowerCase()] || 0;
+                        return ys[0] - xs[0] || ys[1] - xs[1];
                     })
             );
         };
@@ -76,11 +107,13 @@ export default function Milestones() {
     }
 
     return (
-        <VerticalTimeline>
-            {contents.map((t) => {
-                if (t.type === "todo") {
+        <VerticalTimeline animate={false}>
+            {contents.map((t, index) => {
+                if (t.type === "finished") {
+                    console.log("Finished!!");
                     return (
                         <VerticalTimelineElement
+                            key={index}
                             className="vertical-timeline-element--work"
                             contentStyle={finishedStyle}
                             contentArrowStyle={finishedStyle}
@@ -88,31 +121,47 @@ export default function Milestones() {
                             date={t.date}
                             icon={<FaCheckCircle />}
                         >
-                            <h3 className="vertical-timeline-element-title">
-                                {t.content.title}
-                            </h3>
-                            <h4 className="vertical-timeline-element-subtitle">
-                                Done
-                            </h4>
-                            <p>{t.content.desc}</p>
+                            <div style={{textAlign: "left"}}>
+                                <h5 className="vertical-timeline-element-title">
+                                    {t.content.title}
+                                </h5>
+                            </div>
                         </VerticalTimelineElement>
                     );
+                } else if (t.type === "current") {
+                    return (
+                        <VerticalTimelineElement
+                            key={index}
+                            className="vertical-timeline-element--work"
+                            contentStyle={currStyle}
+                            contentArrowStyle={currStyle}
+                            iconStyle={currStyle}
+                            date={t.date}
+                            icon={<FaCheckCircle />}
+                        >
+                            <div style={{textAlign: "left"}}>
+                                <h5 className="vertical-timeline-element-title">
+                                    {t.content.title}
+                                </h5>
+                                <h6 className="text-muted mt-2" style={{fontSize: "14px", opacity: "0.8"}}>{t.content.desc}</h6>
+                            </div>
+                        </VerticalTimelineElement>
+                    )
                 } else {
                     return (
                         <VerticalTimelineElement
+                            key={index}
                             iconStyle={toDoStyle}
                             contentStyle={toDoStyle}
                             contentArrowStyle={toDoStyle}
                             date={t.date}
                             icon={<FaExclamationCircle />}
                         >
-                            <h3 className="vertical-timeline-element-title">
-                                {t.content.title}
-                            </h3>
-                            <h4 className="vertical-timeline-element-subtitle">
-                                To-do
-                            </h4>
-                            <p>{t.content.desc}</p>
+                            <div style={{textAlign: "left"}}>
+                                <h5 className="vertical-timeline-element-title">
+                                    {t.content.title}
+                                </h5>
+                            </div>
                         </VerticalTimelineElement>
                     );
                 }
