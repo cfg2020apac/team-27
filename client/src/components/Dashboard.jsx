@@ -1,96 +1,68 @@
 import React from 'react';
 import './Dashboard.css';
-import { Container, Jumbotron, Card, Alert, Col, Row } from 'react-bootstrap';
+import { Container, Jumbotron, Card, Alert, Col, Row, ProgressBar } from 'react-bootstrap';
 import "react-step-progress-bar/styles.css";
-import { ProgressBar, Step } from 'react-step-progress-bar';
+import circleOutline from '../img/circle-outline-black.svg';
 
 export default function Dashboard(){
     return (
         <Container fluid>
-            <Jumbotron align="left">
+            <Jumbotron align="left" className="module">
                 <h1>Hi, Kevin.</h1>
-                <p>This is the progress you've made so far.</p>
-                <ProgressBar percent={76} filledBackground="green">
-                <Step transition="scale">
-                    {({ accomplished }) => (
-                        <img
-                        style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
-                        width="30"
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Ski_trail_rating_symbol-green_circle.svg/240px-Ski_trail_rating_symbol-green_circle.svg.png"
-                        />
-                    )}
-                    </Step>
-                    <Step transition="scale">
-                    {({ accomplished }) => (
-                        <img
-                        style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
-                        width="30"
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Ski_trail_rating_symbol-green_circle.svg/240px-Ski_trail_rating_symbol-green_circle.svg.png"
-                        />
-                    )}
-                    </Step>
-                    <Step transition="scale">
-                    {({ accomplished }) => (
-                        <img
-                        style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
-                        width="30"
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Ski_trail_rating_symbol-green_circle.svg/240px-Ski_trail_rating_symbol-green_circle.svg.png"
-                        />
-                    )}
-                </Step>
-                </ProgressBar>
+                <p className="text-muted mb-3">You're making good progress!</p>
+                <ProgressBar now={30} label="30%"/>
                 <Alert variant="danger" style={{marginTop: "10px"}}>This is an alert</Alert>
             </Jumbotron>
 
-            <Jumbotron align="left">
+            <Jumbotron align="left" className="module">
                 <h1>Worksheets Due</h1>
-                <Card bg="danger" text="light" fluid>
-                    <Card.Body>
+                <Card bg="danger" text="light" className="mb-2" fluid>
+                    <Card.Body style={{padding: "0.3rem"}}>
                         <Row>
                             <Col>
-                                <Card.Title style={{margin: 0}}>Worksheet1</Card.Title>
+                                <Card.Title style={{margin: 0, fontSize: "15px"}}>Worksheet1</Card.Title>
                             </Col>
                             <Col className="d-flex align-items-center justify-content-end">
-                                <Card.Subtitle style={{margin: 0}}>Due Tonight 10pm</Card.Subtitle>
+                                <Card.Subtitle style={{margin: 0, fontSize: "15px"}}>Due Tonight 10pm</Card.Subtitle>
+                            </Col>
+                        </Row>
+                        {/* <Card.Link href="#">Submission Link</Card.Link> */}
+                    </Card.Body>
+                </Card>
+                <Card className="mb-2" fluid>
+                    <Card.Body style={{padding: "0.3rem"}}>
+                        <Row>
+                            <Col>
+                                <Card.Title style={{margin: 0, fontSize: "15px"}}>Worksheet1</Card.Title>
+                            </Col>
+                            <Col className="d-flex align-items-center justify-content-end">
+                                <Card.Subtitle style={{margin: 0, fontSize: "15px"}}>Due Tonight 10pm</Card.Subtitle>
+                            </Col>
+                        </Row>
+                        {/* <Card.Link href="#">Submission Link</Card.Link> */}
+                    </Card.Body>
+                </Card>
+                <Card className="mb-2" fluid>
+                    <Card.Body style={{padding: "0.3rem"}}>
+                        <Row>
+                            <Col>
+                                <Card.Title style={{margin: 0, fontSize: "15px"}}>Worksheet1</Card.Title>
+                            </Col>
+                            <Col className="d-flex align-items-center justify-content-end">
+                                <Card.Subtitle style={{margin: 0, fontSize: "15px"}}>Due Tonight 10pm</Card.Subtitle>
                             </Col>
                         </Row>
                         {/* <Card.Link href="#">Submission Link</Card.Link> */}
                     </Card.Body>
                 </Card>
                 <Card fluid>
-                    <Card.Body>
+                    <Card.Body style={{padding: "0.3rem"}}>
                         <Row>
                             <Col>
-                                <Card.Title style={{margin: 0}}>Worksheet1</Card.Title>
+                                <Card.Title style={{margin: 0, fontSize: "15px"}}>Worksheet1</Card.Title>
                             </Col>
                             <Col className="d-flex align-items-center justify-content-end">
-                                <Card.Subtitle className="text-muted" style={{margin: 0}}>Due Tonight 10pm</Card.Subtitle>
-                            </Col>
-                        </Row>
-                        {/* <Card.Link href="#">Submission Link</Card.Link> */}
-                    </Card.Body>
-                </Card>
-                <Card fluid>
-                    <Card.Body>
-                        <Row>
-                            <Col>
-                                <Card.Title style={{margin: 0}}>Worksheet1</Card.Title>
-                            </Col>
-                            <Col className="d-flex align-items-center justify-content-end">
-                                <Card.Subtitle className="text-muted" style={{margin: 0}}>Due Tonight 10pm</Card.Subtitle>
-                            </Col>
-                        </Row>
-                        {/* <Card.Link href="#">Submission Link</Card.Link> */}
-                    </Card.Body>
-                </Card>
-                <Card fluid>
-                    <Card.Body>
-                        <Row>
-                            <Col>
-                                <Card.Title style={{margin: 0}}>Worksheet1</Card.Title>
-                            </Col>
-                            <Col className="d-flex align-items-center justify-content-end">
-                                <Card.Subtitle className="text-muted" style={{margin: 0}}>Due Tonight 10pm</Card.Subtitle>
+                                <Card.Subtitle style={{margin: 0, fontSize: "15px"}}>Due Tonight 10pm</Card.Subtitle>
                             </Col>
                         </Row>
                         {/* <Card.Link href="#">Submission Link</Card.Link> */}
@@ -98,9 +70,9 @@ export default function Dashboard(){
                 </Card>
             </Jumbotron>
 
-            <Jumbotron align="left">
+            <Jumbotron align="left" className="module">
             <h1>Meetings Today</h1>
-            <Card fluid>
+            <Card className="mb-2" fluid>
                 <Card.Body>
                     <Row>
                         <Col>

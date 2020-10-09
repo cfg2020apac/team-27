@@ -1,12 +1,12 @@
 import React from 'react';
 import { Container, Jumbotron, Card, Alert, Button, Form, ProgressBar, Badge, Col, Row, Accordion } from 'react-bootstrap';
+import './styles.css';
 
 export default function StudentProgress() {
     return (
         <Container fluid>
             <Jumbotron align="left">
                 <h1>Progress Report</h1>
-
                 <Accordion>
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="0">

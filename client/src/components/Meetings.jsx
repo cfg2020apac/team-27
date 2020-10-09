@@ -12,7 +12,7 @@ import {Briefcase} from 'react-bootstrap-icons';
 const localizer =BigCalendar. momentLocalizer(moment)
 const MyCalendar = (width) =>(
     
-    <div style={{height:"80vh",width:width}}>
+    <div style={{height: "400px", width:width}}>
         <BigCalendar
             localizer={localizer}
             events={[
@@ -115,9 +115,9 @@ export default function Meetings(){
         return () => window.removeEventListener('resize', handleResize);
       }, []);
     return(
-        <Container fluid style={{height:"100vh",background:"#cfcfcf"}}>
-            <Row style={{height:"100vh",paddingBottom:"30px"}}>
-                <Col sm={8} style={{paddingTop:"20px",height:"100vh"}}>
+        <Container fluid>
+            <Row style={{paddingBottom:"30px"}}>
+                <Col sm={8} style={{paddingTop:"20px"}}>
                     <Row>
                         <Col><span style={{fontSize:30, fontWeight:"bold"}}>Events</span></Col>
                     </Row>
