@@ -41,3 +41,14 @@ typed-ast==1.4.1
 typing-extensions==3.7.4.3
 uritemplate==3.0.1
 urllib3==1.25.10
+whitenoise==5.2.0
+dash==1.16.3
+dash-bootstrap-components==0.10.7
+dash-core-components==1.12.1
+dash-html-components==1.1.1
+dash-renderer==1.8.2
+dash-table==4.10.1
+daphne==2.5.0
+django-bootstrap4==2.2.0
+django-cors-headers==3.5.0
+django-plotly-dash==1.4.2
