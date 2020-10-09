@@ -2,7 +2,7 @@ import React from 'react';
 import { Accordion, Card, Container, Button, Row, Col, Image } from 'react-bootstrap';
 
 export default function MyProfile(){
-    return(
+    return (
         <div>
             <Container fluid>
                 <Container>
@@ -10,7 +10,7 @@ export default function MyProfile(){
                         <Col xs={100} md={60}>
                             <Image src="" rounded />
                         </Col>
-                   
+
                     </Row>
                 </Container>
 
@@ -23,7 +23,7 @@ export default function MyProfile(){
                         </Card.Header>
                         <Accordion.Collapse eventKey="0">
 
-                     
+
                             <Card fluid>
                                 <Card.Body>
                                     <Card.Title>Full Name : Kevin Kim</Card.Title>
@@ -32,13 +32,13 @@ export default function MyProfile(){
                                     <Card.Title>Year of study : 10 </Card.Title>
                                 </Card.Body>
                                 <Card.Body>
-                      
-                 
+
+
                                     <Card.Link href="#">Edit Your Profile</Card.Link>
                                 </Card.Body>
-                                
+
                             </Card>
-                            
+
 
                         </Accordion.Collapse>
                     </Card>
@@ -54,14 +54,14 @@ export default function MyProfile(){
                                     <tr>
                                         <th scope="col">Programme</th>
                                         <th scope="col">Year</th>
-                                       
+
                                     </tr>
 
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <th scope="row">JA Company Programme</th>
-                                        <td>2020</td> 
+                                        <td>2020</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">JA Personal Spending</th>
