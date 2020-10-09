@@ -24,7 +24,7 @@ from server.views.students import Students
 from server.views.program import Program
 from server.views.volunteers import Volunteers
 from server.views.contact import Contact
-from server.views.milestones import Milestones
+from server.views.milestones import Milestones, post_milestones
 from server.views.meetings import Meetings
 import sys, os
 
@@ -43,5 +43,6 @@ urlpatterns = [
     path('volunteers/', Volunteers.as_view(), name='get-volunteers'),
     path('contact/', Contact.as_view(), name='get-contact'),
     path('milestones/<int:id>', Milestones.as_view(), name='get-milestones'),
+    path('milestones/', post_milestones),
     path('meetings/<int:id>', Meetings.as_view(), name='get-meetings'),
 ]
