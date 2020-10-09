@@ -7,18 +7,6 @@ from firebase_admin import firestore, initialize_app, credentials
 import firebase_admin
 
 
-# dirname = os.path.dirname(__file__)
-
-# filename = os.path.join(dirname, 'env-firebase-private.json')
-# cred = credentials.Certificate(filename)
-
-# credential_path = os.path.join(dirname, 'env.json')
-# os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credential_path
-
-# __all__ = ['send_to_firebase', 'update_firebase_snapshot']
-
-# initialize_app(cred)
-
 def connect(cred_file: str):
     ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
     cred_path = os.path.join(ROOT_DIR, cred_file)
@@ -105,14 +93,4 @@ def delete_collection(collection: str, batch_size = 64):
         return delete_collection(collection, batch_size)
 
 if __name__ == "__main__":
-    # connect("cfg-2020-team-27-firebase-adminsdk-z2qqh-2737c2383f.json")
-    #     data = {
-#         u'name': u'Los Angeles',
-#         u'age': 18,
-#         u'preference': ["greater_virginia", "hong_kong"]
-#     }
-#     db = firestore.client()
-#     # Add a new doc in collection 'cities' with ID 'LA'
-#     # db.collection(u'students').document(u'LA').set(data)
-#     for doc in get_from_collection(u'students', ""):
-#         print(doc.to_dict())
+    pass
