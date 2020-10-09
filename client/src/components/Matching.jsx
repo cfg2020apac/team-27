@@ -1,10 +1,9 @@
 import React from 'react';
 
-function Matching(){
+export default function Matching(){
     return (
         <div>
             This is Matching.
         </div>
     )
 }
-export default Matching;

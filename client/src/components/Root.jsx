@@ -8,6 +8,8 @@ import {
 } from 'react-router-dom';
 
 import Home from'./Home';
+import Dashboard from './Dashboard';
+import Matching from './Matching';
 
 function Root(){
     // let match = useRouteMatch();
@@ -22,7 +24,7 @@ function Root(){
                         <Link to='/dashboard'>Dashboard</Link>
                     </li>
                     <li>
-                        <Link to='/Matching'>Matching</Link>
+                        <Link to='/matching'>Matching</Link>
                     </li>
                 </ul>
                 <Switch>
@@ -30,10 +32,10 @@ function Root(){
                         <Home/>
                     </Route>
                     <Route path="/dashboard">
-                        <Home/>
+                        <Dashboard/>
                     </Route>
-                    <Route path="/Matching">
-                        <Home/>
+                    <Route path="/matching">
+                        <Matching/>
                     </Route>
                 </Switch>
             </Router>
