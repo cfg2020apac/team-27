@@ -20,6 +20,29 @@ from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 
+from server.views.students import Students
+from server.views.program import Program
+from server.views.volunteers import Volunteers
+from server.views.contact import Contact
+import sys, os
+
+ROOT_DIR = os.path.dirname(os.path.abspath(__package__))
+sys.path.append(ROOT_DIR)
+from firebase.connect import connect
+
+
+connect("env-firebase-private.json")
+#
+
+
+def get_stuff():
+    return "abd"
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('students/', Students.as_view(), name='get-students'),
+    path('program/', Program.as_view(), name='get-program'),
+    path('volunteers/', Volunteers.as_view(), name='get-volunteers'),
+    path('contact/', Contact.as_view(), name='get-contact'),
 ]
