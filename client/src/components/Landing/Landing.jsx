@@ -17,10 +17,7 @@ export default function Landing(){
         textAlign:"center",
         // backgroundColor:"blue"
     }
-    const rowStyle ={
-        textAlign:"center",
-        alignItems:"center"
-    }
+
     return(
         <Container style={wrapperStyle}>
             <Row style={{paddingTop:"100px"}}>
@@ -31,7 +28,7 @@ export default function Landing(){
                 </Col>
                 <Col sm={6} style={{height:"80vh"}}>
                     <Tabs
-                    style={{width:"60%",backgroundColor:"white",backgroundColor:"#ffffff"}}
+                    style={{backgroundColor:"white",backgroundColor:"#ffffff"}}
                     id="controlled-tab-example"
                     activeKey={key}
                     onSelect={(k) => setKey(k)}

@@ -63,11 +63,6 @@ function Root(props) {
                         <Nav className="mr-auto">
                             <NavItem>
                                 <Nav.Link href={`${match.url}`}>
-                                    Home
-                                </Nav.Link>
-                            </NavItem>
-                            <NavItem>
-                                <Nav.Link href={`${match.url}/Dashboard`}>
                                     Dashboard
                                 </Nav.Link>
                             </NavItem>
@@ -92,7 +87,7 @@ function Root(props) {
                                 </Nav.Link>
                             </NavItem>
                         </Nav>
-                        <span style={{paddingRight:"30px"}}>
+                        <span style={{paddingRight:"10px"}}>
                             <NavDropdown title={<Bell color="#000" size={27}/>} id="basic-nav-dropdown" cssClass='e-caret-hide'>
                             {
                                 notifications.map((e)=>{
@@ -110,23 +105,13 @@ function Root(props) {
                                 paddingLeft: "20px",
                             }}
                         >
-                            Kevin - Student
+                            Kevin - {userType}
                         </span>
                         <DoorClosed size={27}/>
                     </Navbar.Collapse>
                 </Navbar>
                 <Switch>
-                    {/* <Route
-                        exact
-                        path={`${match.path}`}
-                        render={() => {
-                            return <Redirect to={`${match.path}/Home`} />;
-                        }}
-                    ></Route> */}
                     <Route exact path={`${match.path}`}>
-                        <Home />
-                    </Route>
-                    <Route path={`${match.path}/Dashboard`}>
                         <Dashboard />
                     </Route>
                     <Route path={`${match.path}/Meetings`}>
