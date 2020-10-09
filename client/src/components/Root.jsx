@@ -15,6 +15,7 @@ import Meetings from "./Meetings";
 import MyProfile from "./MyProfile";
 import Milestones from "./Milestones";
 import { DoorClosed, PersonCircle } from "react-bootstrap-icons";
+import StudentProgress from "./StudentProgress";
 
 function Root() {
     let match = useRouteMatch();
@@ -52,6 +53,11 @@ function Root() {
                                     Milestones
                                 </Nav.Link>
                             </NavItem>
+                            <NavItem>
+                                <Nav.Link href={`${match.url}/StudentProgress`}>
+                                    Student Progress
+                                </Nav.Link>
+                            </NavItem>
                         </Nav>
                         <PersonCircle size={30} />
                         <span
@@ -87,6 +93,9 @@ function Root() {
                     </Route>
                     <Route path={`${match.path}/Milestones`}>
                         <Milestones />
+                    </Route>
+                    <Route path={`${match.path}/StudentProgress`}>
+                        <StudentProgress/>
                     </Route>
                 </Switch>
             </Router>
