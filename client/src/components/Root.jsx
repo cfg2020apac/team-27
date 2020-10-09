@@ -19,6 +19,7 @@ import { DoorClosed, PersonCircle,Bell,StarFill,CheckCircle,ExclamationCircleFil
 import './Root.css';
 import Announcement from "./Announcement/Announcement";
 import SingleAnnouncement from "./Announcement/SingleAnnouncement";
+import StudentProgress from "./StudentProgress";
 
 function Root() {
     let match = useRouteMatch();
@@ -87,6 +88,11 @@ function Root() {
                                     Milestones
                                 </Nav.Link>
                             </NavItem>
+                            <NavItem>
+                                <Nav.Link href={`${match.url}/StudentProgress`}>
+                                    Student Progress
+                                </Nav.Link>
+                            </NavItem>
                         </Nav>
                         <span style={{paddingRight:"30px"}}>
                             <NavDropdown title={<Bell color="#000" size={27}/>} id="basic-nav-dropdown" cssClass='e-caret-hide'>
@@ -136,6 +142,9 @@ function Root() {
                     </Route>
                     <Route path={`${match.path}/Announcements`}>
                         <Announcement />
+                    </Route>
+                    <Route path={`${match.path}/StudentProgress`}>
+                        <StudentProgress/>
                     </Route>
                 </Switch>
             </Router>
