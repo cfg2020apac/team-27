@@ -9,7 +9,7 @@ function App() {
   
 
   return (
-    <div className="App">
+    <div className="App" style={{backgroundColor: "#F5F5F7"}}>
       <Switch>
         <Route exact path='/' render={()=>{
             return(
