@@ -3,13 +3,17 @@ import {
     useRouteMatch,
     Route,
     BrowserRouter as Router,
-    Switch
+    Switch,
+    Redirect,
+    Link
 } from 'react-router-dom';
 import {Navbar,Nav,NavItem} from 'react-bootstrap';
 import JA from '../JA.png';
 import Home from'./Home';
 import Dashboard from './Dashboard';
 import Meetings from './Meetings';
+import MyProfile from './MyProfile';
+import {DoorClosed} from 'react-bootstrap-icons';
 
 function Root(){
     let match = useRouteMatch();
@@ -27,10 +31,21 @@ function Root(){
                             <NavItem><Nav.Link href={`${match.url}/Home`}>Home</Nav.Link></NavItem>
                             <NavItem><Nav.Link href={`${match.url}/Dashboard`}>Dashboard</Nav.Link></NavItem>
                             <NavItem><Nav.Link href={`${match.url}/Meetings`}>Meetings</Nav.Link></NavItem>
+                            <NavItem><Nav.Link href={`${match.url}/MyProfile`}>MyProfile</Nav.Link></NavItem>
                         </Nav>
+                        <span>
+                            Kevin Kim
+                        </span>
+                        <DoorClosed  size={30}/>
                     </Navbar.Collapse>
                 </Navbar>
                 <Switch>
+                    <Route exact path={`${match.path}`} render={()=>{
+                        return(
+                            <Redirect to={`${match.path}/Home`}/>
+                        )
+                    }}>
+                    </Route>
                     <Route exact path={`${match.path}/Home`}>
                         <Home/>
                     </Route>
@@ -39,6 +54,9 @@ function Root(){
                     </Route>
                     <Route path={`${match.path}/Meetings`}>
                         <Meetings/>
+                    </Route>
+                    <Route path={`${match.path}/MyProfile`}>
+                        <MyProfile/>
                     </Route>
                 </Switch>
             </Router>
