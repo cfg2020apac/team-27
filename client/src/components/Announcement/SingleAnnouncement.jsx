@@ -38,13 +38,10 @@ export default function SingleAnnouncement(props){
         },
     }
     return(
-        <Jumbotron style={{height:"100vh"}}>
+        <Jumbotron className="module" align="left" style={{height:"100vh"}}>
             <h1>{dummyAnnouncement[id.toString()].title}</h1>
-            <div style={{padding:"10px"}}/>
-            <h2>{dummyAnnouncement[id.toString()].subject}</h2>
-            <div style={{padding:"10px"}}/>
-            <h3>{dummyAnnouncement[id.toString()].description}</h3>
-            <div style={{padding:"10px"}}/>
+            <h5>{dummyAnnouncement[id.toString()].subject}</h5>
+            <h6 className="text-muted mb-5">{dummyAnnouncement[id.toString()].description}</h6>
             <p>{dummyAnnouncement[id.toString()].content}</p>
         </Jumbotron>
     );

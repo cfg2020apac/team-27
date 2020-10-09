@@ -126,7 +126,7 @@ export default function Meetings(){
                     </Row>
                     <Row><Col>{MyCalendar(todayDate)}</Col></Row>
                 </Col>
-                <Col sm={4} style={{height:"100vh"}}>
+                {/* <Col sm={4} style={{height:"100vh"}}>
                     <Row style={{paddingTop:"20px",paddingBottom:"30px"}}><Col><span style={{fontSize:30,fontWeight:"bold"}}>Timeline</span></Col></Row>
                     <Row>
                         <VerticalTimeline
@@ -138,7 +138,7 @@ export default function Meetings(){
                         </VerticalTimeline>
                     </Row>
                     
-                </Col>
+                </Col> */}
             </Row>
         </Container>
     )

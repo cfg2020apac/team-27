@@ -8,7 +8,7 @@ import {
     Redirect,
     Link
 } from 'react-router-dom';
-import {Container,Jumbotron,Card} from 'react-bootstrap';
+import {Container,Jumbotron,Card,Row, Col} from 'react-bootstrap';
 import { DoorClosed, PersonCircle,Bell,StarFill,CheckCircle,ExclamationCircleFill } from "react-bootstrap-icons";
 
 export default function TableAnnouncement(){
@@ -26,21 +26,21 @@ export default function TableAnnouncement(){
             "id":"1",
             "title":"Announcement 1",
             "description":"This is description of announcement 1",
-            "date": "29th May ,2020",
+            "date": "29th May, 2020",
             'type':'star'
         },
         {
             "id":"2",
             "title":"Announcement 2",
             "description":"This is description of announcement 2",
-            "date": "21st May ,2020",
+            "date": "21st May, 2020",
             'type':'good'
         },
         {
             "id":"3",
             "title":"Announcement 3",
             "description":"This is description of announcement 3",
-            "date": "7th April ,2020",
+            "date": "7th April, 2020",
             'type':'bad'
         },
         {
@@ -54,7 +54,7 @@ export default function TableAnnouncement(){
     const typeIcon = (type)=>{
         switch(type){
             case 'star':
-                return <span style={{paddingLeft:"5px"}}><StarFill size={23} color="#a8a232"/></span>
+                return <span style={{paddingLeft:"5px"}}>⭐</span>
             case 'good':
                 return <span style={{paddingLeft:"5px"}}><CheckCircle size={20} color="green"/></span>
             case 'bad':
@@ -71,9 +71,19 @@ export default function TableAnnouncement(){
                             <Link to={`${match.path}/${e.id}`}>
                                 <div style={{paddingBottom:"20px"}}> 
                                     
-                                        <Card>
+                                        <Card align="left" text="dark">
                                             <Card.Body >
-                                                <Card.Title>{[e.title,<div style={{paddingLeft:"30px"}}/>,typeIcon(e.type)]}</Card.Title>
+                                                <Card.Title>
+                                                    <Row>
+                                                        <Col xs={10}>
+                                                            <h5 className="mb-0">{e.title}</h5>
+                                                        </Col>
+                                                        <Col xs={2}>
+                                                            {typeIcon(e.type)}
+                                                        </Col>
+                                                    </Row>
+                                                    {/* {[e.title,<div style={{paddingLeft:"30px"}}/>,typeIcon(e.type)]} */}
+                                                </Card.Title>
                                                 <Card.Subtitle>{e.date}</Card.Subtitle>
                                                 <Card.Text>
                                                     {e.description}
