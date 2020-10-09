@@ -30,10 +30,10 @@ def add_to_firebase(data, collection : str):
     # working
     db = firestore.client()
     start = time.time()
-    db.collection(collection).document().create(raw_notification)
+    db.collection(collection).document().create(data)
     end = time.time()
     spend_time = timedelta(seconds=end - start)
-    return spend_tim
+    return spend_time
 
 def update_to_firebase(data, snapshot_id, collection : str):
     """
@@ -51,13 +51,21 @@ def update_to_firebase(data, snapshot_id, collection : str):
     spend_time = timedelta(seconds=end - start)
     return spend_time
 
+def get_from_collection(collection: str, document: str):
+    db = firestore.client()
+    doc_ref = db.collection(collection).stream()
+    # {doc.id} => {doc.to_dict()}
+    return doc_ref
+
+
 if __name__ == "__main__":
     data = {
         u'name': u'Los Angeles',
-        u'age': 15,
-        u'preference': ["greater_virginia"]
+        u'age': 18,
+        u'preference': ["greater_virginia", "hong_kong"]
     }
     db = firestore.client()
     # Add a new doc in collection 'cities' with ID 'LA'
     # db.collection(u'students').document(u'LA').set(data)
-    update_firebase_snapshot(data, "iWSAB2Pfucgl9ASBQRmc", u'students')
+    for doc in get_from_collection(u'students', ""):
+        print(doc.to_dict())
