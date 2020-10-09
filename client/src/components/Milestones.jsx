@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Spinner } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import { FaCheckCircle, FaExclamationCircle } from "react-icons/fa";
 import {
     VerticalTimeline,
@@ -10,7 +10,7 @@ import "react-vertical-timeline-component/style.min.css";
 
 const toDoStyle = { background: "white", color: "black", opacity: "0.5" };
 const finishedStyle = { background: "white", color: "black", opacity: "0.5" };
-const currStyle = { background: "white", color: "black" , opacity: "1"};
+const currStyle = { background: "white", color: "black", opacity: "1" };
 
 const nummap = {
     jan: 1,
@@ -52,6 +52,7 @@ export default function Milestones() {
                                 content: {
                                     title: t.title,
                                     desc: t.desc,
+                                    links: t.links.split(","),
                                 },
                             };
                         } else {
@@ -110,7 +111,6 @@ export default function Milestones() {
         <VerticalTimeline animate={false}>
             {contents.map((t, index) => {
                 if (t.type === "finished") {
-                    console.log("Finished!!");
                     return (
                         <VerticalTimelineElement
                             key={index}
@@ -121,7 +121,7 @@ export default function Milestones() {
                             date={t.date}
                             icon={<FaCheckCircle />}
                         >
-                            <div style={{textAlign: "left"}}>
+                            <div style={{ textAlign: "left" }}>
                                 <h5 className="vertical-timeline-element-title">
                                     {t.content.title}
                                 </h5>
@@ -139,14 +139,34 @@ export default function Milestones() {
                             date={t.date}
                             icon={<FaCheckCircle />}
                         >
-                            <div style={{textAlign: "left"}}>
-                                <h5 className="vertical-timeline-element-title">
-                                    {t.content.title}
-                                </h5>
-                                <h6 className="text-muted mt-2" style={{fontSize: "14px", opacity: "0.8"}}>{t.content.desc}</h6>
+                            <div style={{ textAlign: "left" }}>
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        justifyContent: "space-between",
+                                    }}
+                                >
+                                    <h5 className="vertical-timeline-element-title">
+                                        {t.content.title}
+                                    </h5>
+                                    <Button>Submit Worksheet</Button>
+                                </div>
+                                <h6
+                                    className="text-muted mt-2"
+                                    style={{ fontSize: "14px", opacity: "0.8" }}
+                                >
+                                    {t.content.desc}
+                                </h6>
+                                <ul>
+                                    {t.content.links.map((lk) => (
+                                        <li>
+                                            <a href={lk}>{lk}</a>
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
                         </VerticalTimelineElement>
-                    )
+                    );
                 } else {
                     return (
                         <VerticalTimelineElement
@@ -157,7 +177,7 @@ export default function Milestones() {
                             date={t.date}
                             icon={<FaExclamationCircle />}
                         >
-                            <div style={{textAlign: "left"}}>
+                            <div style={{ textAlign: "left" }}>
                                 <h5 className="vertical-timeline-element-title">
                                     {t.content.title}
                                 </h5>
