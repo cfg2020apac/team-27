@@ -20,7 +20,7 @@ function App() {
         }}/>
         <Route path="/login"><Login onPress={setisLogin}/></Route>
         <Route path="/signup"><Signup/></Route>
-        <Route path="/root" ><Root/></Route> 
+        <Route path="/root"><Root/></Route> 
       </Switch>
     </div>
   );
