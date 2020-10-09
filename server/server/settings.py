@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django_plotly_dash.apps.DjangoPlotlyDashConfig',
     'django.contrib.staticfiles',
 ]
 
@@ -51,6 +52,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# urlpatterns = [
+#     path('django_plotly_dash/', include('django_plotly_dash.urls')),
+# ]
 
 ROOT_URLCONF = 'server.urls'
 
@@ -72,6 +77,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'server.wsgi.application'
 
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
