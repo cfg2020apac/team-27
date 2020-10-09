@@ -24,6 +24,7 @@ from server.views.students import Students
 from server.views.program import Program
 from server.views.volunteers import Volunteers
 from server.views.contact import Contact
+from server.views.milestones import Milestones
 import sys, os
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__package__))
@@ -45,4 +46,5 @@ urlpatterns = [
     path('program/', Program.as_view(), name='get-program'),
     path('volunteers/', Volunteers.as_view(), name='get-volunteers'),
     path('contact/', Contact.as_view(), name='get-contact'),
+    path('milestones/<int:id>', Milestones.as_view(), name='get-milestones'),
 ]
