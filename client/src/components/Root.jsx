@@ -5,7 +5,6 @@ import {
     Route,
     BrowserRouter as Router,
     Switch,
-    useLocation,
     useParams,
     Link,
 } from "react-router-dom";
@@ -24,7 +23,7 @@ import DashboardVolunteer from "./Volunteer";
 
 function Root(props) {
     let { userType } = useParams();
-    console.log("UserType:",userType)
+
     let match = useRouteMatch();
     const history = useHistory();
     const notifications = [
@@ -53,6 +52,10 @@ function Root(props) {
         }
     }
 
+    const goRoot = () =>{
+        history.push('/')
+    }
+    
     return (
         <div>
             <Router>
@@ -114,7 +117,7 @@ function Root(props) {
                         
                         <Button 
                             style={{backgroundColor:"transparent",border:"none"}}
-                            onClick={()=>{console.log("Hello")}}
+                            onClick={goRoot}
                             >
                             <DoorClosed size={27} color="black"/>
                         </Button>
