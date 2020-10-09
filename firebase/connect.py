@@ -4,6 +4,7 @@ from uuid import uuid4
 import json
 import os
 from firebase_admin import firestore, initialize_app, credentials
+import firebase_admin
 
 
 # dirname = os.path.dirname(__file__)
@@ -104,7 +105,7 @@ def delete_collection(collection: str, batch_size = 64):
         return delete_collection(collection, batch_size)
 
 if __name__ == "__main__":
-
+    # connect("cfg-2020-team-27-firebase-adminsdk-z2qqh-2737c2383f.json")
     #     data = {
 #         u'name': u'Los Angeles',
 #         u'age': 18,
