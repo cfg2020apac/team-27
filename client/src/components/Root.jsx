@@ -13,7 +13,7 @@ import Home from'./Home';
 import Dashboard from './Dashboard';
 import Meetings from './Meetings';
 import MyProfile from './MyProfile';
-import {DoorClosed} from 'react-bootstrap-icons';
+import {DoorClosed,PersonCircle} from 'react-bootstrap-icons';
 
 function Root(){
     let match = useRouteMatch();
@@ -33,8 +33,9 @@ function Root(){
                             <NavItem><Nav.Link href={`${match.url}/Meetings`}>Meetings</Nav.Link></NavItem>
                             <NavItem><Nav.Link href={`${match.url}/MyProfile`}>MyProfile</Nav.Link></NavItem>
                         </Nav>
-                        <span>
-                            Kevin Kim
+                        <PersonCircle  size={30}/>
+                        <span style={{paddingRight:"20px",paddingLeft:"20px"}}>
+                            Kevin - Student
                         </span>
                         <DoorClosed  size={30}/>
                     </Navbar.Collapse>
