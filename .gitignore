@@ -23,5 +23,9 @@ env/
 # firebase
 firebase/env*
 
+# venv
+cfg-27/
+
+
 *.pyc
 __pycache__
