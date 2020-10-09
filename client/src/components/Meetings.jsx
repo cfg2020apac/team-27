@@ -1,14 +1,18 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import {Container, Row, Col,Card} from 'react-bootstrap';
 import moment from 'moment'
 // import {Calendar,momentLocalizer,Views} from 'react-big-calendar';
 import BigCalendar from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 // import '../../node_modules/react-big-calendar/lib/css/react-big-calendar.css';
+import {VerticalTimeline,VerticalTimelineElement} from 'react-vertical-timeline-component';
+import 'react-vertical-timeline-component/style.min.css';
+import {Briefcase} from 'react-bootstrap-icons';
 
 const localizer =BigCalendar. momentLocalizer(moment)
-const MyCalendar = (todayDate) =>(
-    <div style={{height:"80vh",width:"60vw"}}>
+const MyCalendar = (width) =>(
+    
+    <div style={{height:"80vh",width:width}}>
         <BigCalendar
             localizer={localizer}
             events={[
@@ -43,55 +47,29 @@ function getMonthString(num){
     }
 }
 
-const timeLineCard = (event) =>{
-    return (
-        <Row style={{paddingBottom:"30px"}}>
-            <Col>
-                <Card>
-                    <Card.Body>
-                        <Card.Title>
-                            {event.title}
-                        </Card.Title>
-                        <Card.Text>
-                            {event.description}
-                        </Card.Text>
-                    </Card.Body>
-                </Card>
-            </Col>
-        </Row>
-    )
+const getDate  = (date) =>{
+    const strReturn = date.getDate() +", "+getMonthString(date.getMonth())+", "+date.getFullYear();
+    return strReturn;
 }
-
-const personalCard = (event)=>{
-    const date = event.end.getDate()+", "+getMonthString(event.end.getMonth())+", "+event.end.getFullYear();
-    return (
-        <Row>
-            <Col sm={1} style={{alignItems:"center"}}>
-                <span style={{height:20,width:20,backgroundColor:"#000000",borderRadius:"50%",position:"absolute"}}/>
-                <span style={{height:"50vh",borderLeft:"thick solid #000000",position:"absolute",left:"35px"}}/>
-            </Col>
-            <Col sm={11} style={{height:"15vh"}}>
-                <Container style={{width:"27vw",height:"12vh",border:"1px solid grey",borderRadius:"3px"}}>
-                    <Row>
-                        <Col sm={5}>
-                           <Container>
-                               <Row>{event.title}</Row>
-                               <Row>Due:</Row>
-                               <Row>{date}</Row>
-                           </Container>
-                        </Col>
-                        <Col sm={7}>
-                            <p>
-                                {event.description}
-                            </p>
-                        </Col>
-                    </Row>
-                </Container>
-            </Col>
-        </Row>
-    )
+const timelineElement = (e) =>{
+    const date = getDate(e.start)+' - '+getDate(e.end)
+    return <VerticalTimelineElement
+            className="vertical-timeline-element--work"
+            contentStyle={{background:'rgb(33, 150, 243)', color: '#fff' }}
+            contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
+            date={date}
+            iconStyle={{ background: 'rgb(33, 150, 243)', color: '#000' }}
+            icon={<Briefcase color="#fff"/>}
+        >
+        <h3 className="vertical-timeline-element-title">{e.title}</h3>
+        <p>
+            {e.description}
+        </p>
+    </VerticalTimelineElement>
 }
 export default function Meetings(){
+
+    const [calendarWidth,setCalendarWidth] = useState("60vw");
 
     const todayDate = new Date(Date.now())
     const month = getMonthString(todayDate.getMonth())
@@ -117,26 +95,29 @@ export default function Meetings(){
             'end': new Date(2018, 0, 1, 14, 0), // 2.00 PM 
             'description':"This is event 3"
         },
-        {
-            'title': 'My event 4',
-            'allDay': false,
-            'start': new Date(2018, 0, 1, 10, 0), // 10.00 AM
-            'end': new Date(2018, 0, 1, 14, 0), // 2.00 PM 
-            'description':"This is event 4"
-        },
-        {
-            'title': 'My event 5',
-            'allDay': false,
-            'start': new Date(2018, 0, 1, 10, 0), // 10.00 AM
-            'end': new Date(2018, 0, 1, 14, 0), // 2.00 PM 
-            'description':"This is event 5"
-        },
     ]
 
+    const updateWindowsDimensions = () =>{
+        if(window.innerWidth>573){
+            setCalendarWidth("60vw")
+
+        }else{
+            setCalendarWidth("90vw")
+        }
+    }
+
+    useEffect(() => {
+        function handleResize() {
+          updateWindowsDimensions();
+        }
+    
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+      }, []);
     return(
-        <Container fluid style={{height:"100vh",background:"white"}}>
-            <Row style={{height:"100vh",paddingTop:"10px",paddingBottom:"30px"}}>
-                <Col sm={8} style={{}}>
+        <Container fluid style={{height:"100vh",background:"#cfcfcf"}}>
+            <Row style={{height:"100vh",paddingBottom:"30px"}}>
+                <Col sm={8} style={{paddingTop:"20px",height:"100vh"}}>
                     <Row>
                         <Col><span style={{fontSize:30, fontWeight:"bold"}}>Events</span></Col>
                     </Row>
@@ -145,11 +126,18 @@ export default function Meetings(){
                     </Row>
                     <Row><Col>{MyCalendar(todayDate)}</Col></Row>
                 </Col>
-                <Col sm={4}>
-                    <Row style={{paddingBottom:"30px"}}><Col><span style={{fontSize:30,fontWeight:"bold"}}>Timeline</span></Col></Row>
-                    {dummyEvents.map((e)=>{
-                        return personalCard(e)
-                    })}
+                <Col sm={4} style={{height:"100vh"}}>
+                    <Row style={{paddingTop:"20px",paddingBottom:"30px"}}><Col><span style={{fontSize:30,fontWeight:"bold"}}>Timeline</span></Col></Row>
+                    <Row>
+                        <VerticalTimeline
+                            layout={'1-column-left'}
+                            >  
+                            {dummyEvents.map((e)=>{
+                                return timelineElement(e)
+                            })}
+                        </VerticalTimeline>
+                    </Row>
+                    
                 </Col>
             </Row>
         </Container>
