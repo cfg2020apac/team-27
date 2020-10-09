@@ -13,7 +13,8 @@ export default function Dashboard(){
                 <ProgressBar className="mb-2" now={80} label="80%"/>
                 <p className="text-muted mb-3">You're making good progress!</p>
                 <Form.Text>Alerts</Form.Text>
-                <Alert variant="warning" style={{marginTop: "10px"}}>Worksheet due at 3:00 pm tomorrow.</Alert>
+                <Alert variant="danger" style={{marginTop: "10px"}}>Worksheet 1 due tonight at 11:59pm</Alert>
+                <Alert variant="warning" style={{marginTop: "10px"}}>Worksheet 2 due tomorrow at 10:00 pm</Alert>
             </Jumbotron>
 
             <Jumbotron align="left" className="module">

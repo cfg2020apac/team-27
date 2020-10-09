@@ -9,24 +9,24 @@ import Signup from './Signup';
 export default function Landing(){
     const [key, setKey] = useState('login');
     const wrapperStyle ={
-        height:"100vh",
-        width:"100vw",
+        // height:"100vh",
+        // width:"100vw",
         display:"flex",
         justifyContent:"center",
         alignItems:"center",
-        textAlign:"center",
+        // textAlign:"center",
         // backgroundColor:"blue"
     }
 
     return(
-        <Container style={wrapperStyle}>
-            <Row style={{paddingTop:"100px"}}>
-                <Col sm={6} style={{width:"50vw",display:"flex",justifyContent:"center"}}>
-                    <div style={{paddingTop:"15px"}}>
-                        <img src={JA}/>
+        <Container style={wrapperStyle} fluid>
+            <div style={{paddingTop:"100px", width: "100%"}}>
+                <Col className="mr-0 pr-0 mb-5" xs={11} sm={11}>
+                    <div className="d-flex flex-row justify-content-center">
+                        <img src={JA} style={{height: "150px"}}/>
                     </div>
                 </Col>
-                <Col sm={6} style={{height:"80vh"}}>
+                <Col className="mr-0 pr-0" xs={11} sm={11} style={{height: "80vh"}}>
                     <Tabs
                     style={{backgroundColor:"white",backgroundColor:"#ffffff"}}
                     id="controlled-tab-example"
@@ -41,7 +41,7 @@ export default function Landing(){
                     </Tab>
                 </Tabs>
                 </Col>
-            </Row>
+            </div>
             
     </Container>
     );

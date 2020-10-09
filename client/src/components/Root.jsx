@@ -21,6 +21,7 @@ import Announcement from "./Announcement/Announcement";
 import StudentProgress from "./StudentProgress";
 import DashboardVolunteer from "./Volunteer";
 
+
 function Root(props) {
     let { userType } = useParams();
 
@@ -60,7 +61,9 @@ function Root(props) {
         <div>
             <Router>
                 <Navbar bg="light" expand="lg">
-                    <Navbar.Brand href={`${match.url}`}>JA Hong Kong</Navbar.Brand>
+                    <Navbar.Brand href={`${match.url}`}>
+                        <img style={{height: "40px"}}src={JA}></img>
+                    </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
@@ -96,12 +99,12 @@ function Root(props) {
                         </Nav>
                         <span style={{paddingRight:"10px"}}>
                             <NavDropdown title={<Bell color="#000" size={27}/>} id="basic-nav-dropdown" cssClass='e-caret-hide'>
-                            {
+                            {/* {
                                 notifications.map((e)=>{
                                     return <NavDropdown.Item>{[e.title,typeIcon(e.type)]}</NavDropdown.Item>
                                 })
                             }
-                            <NavDropdown.Divider />
+                            <NavDropdown.Divider /> */}
                             <NavDropdown.Item><Link to={`${match.path}/Announcements`}>All Announcements</Link></NavDropdown.Item> 
                             </NavDropdown>
                         </span>
