@@ -129,7 +129,6 @@ export default function Milestones() {
                         </VerticalTimelineElement>
                     );
                 } else if (t.type === "current") {
-                    console.log("current!!!");
                     return (
                         <VerticalTimelineElement
                             key={index}
@@ -144,6 +143,7 @@ export default function Milestones() {
                                 <h5 className="vertical-timeline-element-title">
                                     {t.content.title}
                                 </h5>
+                                <h6 className="text-muted mt-2" style={{fontSize: "14px", opacity: "0.8"}}>{t.content.desc}</h6>
                             </div>
                         </VerticalTimelineElement>
                     )
@@ -161,7 +161,6 @@ export default function Milestones() {
                                 <h5 className="vertical-timeline-element-title">
                                     {t.content.title}
                                 </h5>
-                                <p>{t.content.desc}</p>
                             </div>
                         </VerticalTimelineElement>
                     );
