@@ -40,6 +40,7 @@ connect("env-firebase-private.json")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('django_plotly_dash/', include('django_plotly_dash.urls')),
     path('students/', Students.as_view(), name='get-students'),
     path('program/', Program.as_view(), name='get-program'),
     path('volunteers/', Volunteers.as_view(), name='get-volunteers'),
