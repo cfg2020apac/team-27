@@ -31,7 +31,7 @@ function Login(props){
     }
     return(
         <Container>
-            <Row style={{padding:"20px"}}>
+            <Row style={{paddingTop:"20px"}}>
                 <Col sm={12} style={{fontSize:30,fontWeight:"bold"}}>LOGIN</Col>
             </Row>
             <Row>
