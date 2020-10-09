@@ -2,16 +2,17 @@ import time
 from datetime import timedelta
 from uuid import uuid4
 import json
+import os
 from firebase_admin import firestore, initialize_app, credentials
 
-cred = credentials.Certificate("env-firebase-private.json")
+
+dirname = os.path.dirname(__file__)
+filename = os.path.join(dirname, 'env-firebase-private.json')
+cred = credentials.Certificate(filename)
 
 __all__ = ['send_to_firebase', 'update_firebase_snapshot']
 
 initialize_app(cred)
-
-# credential_path = "D:\\team-27\\firebase\\env.json"
-# os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credential_path
 
 def send_to_firebase(raw_notification, collection : str):
     # working
