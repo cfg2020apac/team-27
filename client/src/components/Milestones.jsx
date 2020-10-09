@@ -11,6 +11,21 @@ import "react-vertical-timeline-component/style.min.css";
 const toDoStyle = { background: "rgb(255,140,0)", color: "#fff" };
 const finishedStyle = { background: "rgb(16, 204, 82)", color: "#fff" };
 
+const nummap = {
+    jan: 1,
+    feb: 2,
+    mar: 3,
+    apr: 4,
+    may: 5,
+    jun: 6,
+    jul: 7,
+    aug: 8,
+    sep: 9,
+    oct: 10,
+    nov: 11,
+    dec: 12,
+};
+
 export default function Milestones() {
     const [contents, setContents] = useState([]);
 
@@ -41,7 +56,13 @@ export default function Milestones() {
                         }
                     })
                     .sort((x, y) => {
-                        return y.type.localeCompare(x.type);
+                        let xs = x.date.split(" ");
+                        let ys = y.date.split(" ");
+                        xs[0] =
+                            nummap[xs[0].substring(0, 3).toLowerCase()] || 0;
+                        ys[0] =
+                            nummap[ys[0].substring(0, 3).toLowerCase()] || 0;
+                        return ys[0] - xs[0] || ys[1] - xs[1];
                     })
             );
         };
