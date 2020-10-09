@@ -5,11 +5,11 @@ import {
     Route,
     BrowserRouter as Router,
     Switch,
-    Redirect,
+    useLocation,
     useParams,
     Link,
 } from "react-router-dom";
-import { Navbar, Nav, NavItem,Dropdown,DropdownButton, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav, NavItem,Button, NavDropdown } from "react-bootstrap";
 import JA from "./JA.png";
 import Home from "./Home";
 import Dashboard from "./Dashboard";
@@ -19,7 +19,6 @@ import Milestones from "./Milestones";
 import { DoorClosed, PersonCircle,Bell,StarFill,CheckCircle,ExclamationCircleFill } from "react-bootstrap-icons";
 import './Root.css';
 import Announcement from "./Announcement/Announcement";
-import SingleAnnouncement from "./Announcement/SingleAnnouncement";
 import StudentProgress from "./StudentProgress";
 import DashboardVolunteer from "./Volunteer";
 
@@ -82,16 +81,15 @@ function Root(props) {
                                     Milestones
                                 </Nav.Link>
                             </NavItem>
-                            <NavItem>
-                                <Nav.Link href={`${match.url}/StudentProgress`}>
-                                    Student Progress
-                                </Nav.Link>
-                            </NavItem>
-                            <NavItem>
-                                <Nav.Link href={`${match.url}/DashboardVolunteer`}>
-                                    Dashboard Volunteer
-                                </Nav.Link>
-                            </NavItem>
+                            {
+                                userType!=="Student"?
+                                <NavItem>
+                                    <Nav.Link href={`${match.url}/StudentProgress`}>
+                                        Student Progress
+                                    </Nav.Link>
+                                </NavItem>
+                                :null
+                            }
                         </Nav>
                         <span style={{paddingRight:"10px"}}>
                             <NavDropdown title={<Bell color="#000" size={27}/>} id="basic-nav-dropdown" cssClass='e-caret-hide'>
@@ -113,12 +111,23 @@ function Root(props) {
                         >
                             Kevin - {userType}
                         </span>
-                        <DoorClosed size={27}/>
+                        
+                        <Button 
+                            style={{backgroundColor:"transparent",border:"none"}}
+                            onClick={()=>{console.log("Hello")}}
+                            >
+                            <DoorClosed size={27} color="black"/>
+                        </Button>
+                        
                     </Navbar.Collapse>
                 </Navbar>
                 <Switch>
                     <Route exact path={`${match.path}`}>
-                        <Dashboard />
+                        {
+                            userType==="Student"?
+                            <Dashboard />:
+                            <DashboardVolunteer/>
+                        }
                     </Route>
                     <Route path={`${match.path}/Meetings`}>
                         <Meetings />
@@ -135,9 +144,7 @@ function Root(props) {
                     <Route path={`${match.path}/StudentProgress`}>
                         <StudentProgress/>
                     </Route>
-                    <Route path={`${match.path}/DashboardVolunteer`}>
-                        <DashboardVolunteer/>
-                    </Route>
+
                 </Switch>
             </Router>
         </div>
