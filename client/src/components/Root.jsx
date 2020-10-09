@@ -6,10 +6,11 @@ import {
     BrowserRouter as Router,
     Switch,
     Redirect,
+    useParams,
     Link,
 } from "react-router-dom";
 import { Navbar, Nav, NavItem,Dropdown,DropdownButton, NavDropdown } from "react-bootstrap";
-import JA from "../JA.png";
+import JA from "./JA.png";
 import Home from "./Home";
 import Dashboard from "./Dashboard";
 import Meetings from "./Meetings";
@@ -21,7 +22,9 @@ import Announcement from "./Announcement/Announcement";
 import SingleAnnouncement from "./Announcement/SingleAnnouncement";
 import StudentProgress from "./StudentProgress";
 
-function Root() {
+function Root(props) {
+    let { userType } = useParams();
+    console.log("UserType:",userType)
     let match = useRouteMatch();
     const history = useHistory();
     const notifications = [
@@ -50,21 +53,16 @@ function Root() {
         }
     }
 
-    const navToNotifcations = ()=>{
-        // history.push("/root/Announcements")
-        // history.push("/Announcements")
-        // console.log("Notifications:",history)
-    }
     return (
         <div>
             <Router>
                 <Navbar bg="light" expand="lg">
-                    <Navbar.Brand href="/root">JA Hong Kong</Navbar.Brand>
+                    <Navbar.Brand href={`${match.url}`}>JA Hong Kong</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
                             <NavItem>
-                                <Nav.Link href={`${match.url}/Home`}>
+                                <Nav.Link href={`${match.url}`}>
                                     Home
                                 </Nav.Link>
                             </NavItem>
@@ -118,14 +116,14 @@ function Root() {
                     </Navbar.Collapse>
                 </Navbar>
                 <Switch>
-                    <Route
+                    {/* <Route
                         exact
                         path={`${match.path}`}
                         render={() => {
                             return <Redirect to={`${match.path}/Home`} />;
                         }}
-                    ></Route>
-                    <Route exact path={`${match.path}/Home`}>
+                    ></Route> */}
+                    <Route exact path={`${match.path}`}>
                         <Home />
                     </Route>
                     <Route path={`${match.path}/Dashboard`}>
