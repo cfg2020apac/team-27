@@ -1,6 +1,9 @@
 import React,{useState} from 'react';
 import {Container,Row,Col,Form,Button} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 import JA from '../JA.png'
+
+
 function Login(props){
 
     const wrapperStyle ={
@@ -16,10 +19,6 @@ function Login(props){
         alignItems:"center"
     }
 
-    function onPressedButton(){
-        props.onClick(true);
-        console.log("ButtonClicked")
-    }
     return(
         <Container style={wrapperStyle}>
             <img src={JA}/>
@@ -39,9 +38,11 @@ function Login(props){
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control type="password" placeholder="Password" />
                             </Form.Group>
-                            <Button variant="primary" type="submit" onClick={onPressedButton}>
-                                Login
-                            </Button>
+                            <Link to="/root">
+                                <Button variant="primary" type="submit" >
+                                    Login
+                                </Button>
+                            </Link>
                         </Form>
                     </Col>
                 </Row>

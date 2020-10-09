@@ -1,5 +1,6 @@
 import React from 'react';
 import {Container,Row,Col,Form,Button} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 import JA from '../JA.png'
 
 function Signup(props){
@@ -45,9 +46,11 @@ function Signup(props){
                                 <Form.Label>Re-type Password</Form.Label>
                                 <Form.Control type="password" placeholder="Re-type Password" />
                             </Form.Group>
-                            <Button variant="primary" type="submit" onClick={onPressedButton}>
-                                Login
-                            </Button>
+                            <Link to="/root">
+                                <Button variant="primary" type="submit" >
+                                    Login
+                                </Button>
+                            </Link>
                         </Form>
                     </Col>
                 </Row>

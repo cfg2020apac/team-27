@@ -10,9 +10,6 @@ function App() {
 
   return (
     <div className="App">
-      {isLogin?
-      <div>LoginPage</div>:
-      <div>NOOOOO</div>}
       <Switch>
         <Route exact path='/' render={()=>{
             return(
