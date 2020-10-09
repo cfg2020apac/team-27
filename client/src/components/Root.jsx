@@ -29,7 +29,7 @@ function Root(){
                 </ul>
                 <Switch>
                     <Route exact path="/">
-                        <Home/>
+                        <Dashboard/>
                     </Route>
                     <Route path="/dashboard">
                         <Dashboard/>
