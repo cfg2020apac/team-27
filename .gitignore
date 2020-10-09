@@ -20,5 +20,8 @@ env/
 .env.*
 .env
 
+# firebase
+firebase/env*
+
 *.pyc
 __pycache__
