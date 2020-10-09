@@ -22,7 +22,7 @@ from django_plotly_dash import DjangoDash
 
 connect("cfg-2020-team-27-firebase-adminsdk-z2qqh-527dd19b08.json")
 
-# app = DjangoDash('Visualizations', add_bootstrap_links=True)
+app = DjangoDash('Visualizations', add_bootstrap_links=True)
 
 stu = get_collection("students")
 df = pd.DataFrame(stu)
@@ -106,7 +106,6 @@ dashboard = {
 }
 
 external_stylesheets = ["https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@400;500;700&display=swap", dbc.themes.BOOTSTRAP]
-app = dash.Dash("viz", external_stylesheets=external_stylesheets)
 
 ### Step 5: Add the title and empty graphs
 title_component = html.Div(html.H1("Dashboard", style=title))
@@ -263,5 +262,3 @@ def update_figure(pname, students, metric = "score"):
 #     tree_fig.update_layout()
     
     return line_fig
-
-app.run_server(port = "8900")
