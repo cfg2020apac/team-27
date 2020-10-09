@@ -21,6 +21,7 @@ import './Root.css';
 import Announcement from "./Announcement/Announcement";
 import SingleAnnouncement from "./Announcement/SingleAnnouncement";
 import StudentProgress from "./StudentProgress";
+import DashboardVolunteer from "./Volunteer";
 
 function Root(props) {
     let { userType } = useParams();
@@ -86,6 +87,11 @@ function Root(props) {
                                     Student Progress
                                 </Nav.Link>
                             </NavItem>
+                            <NavItem>
+                                <Nav.Link href={`${match.url}/DashboardVolunteer`}>
+                                    Dashboard Volunteer
+                                </Nav.Link>
+                            </NavItem>
                         </Nav>
                         <span style={{paddingRight:"10px"}}>
                             <NavDropdown title={<Bell color="#000" size={27}/>} id="basic-nav-dropdown" cssClass='e-caret-hide'>
@@ -128,6 +134,9 @@ function Root(props) {
                     </Route>
                     <Route path={`${match.path}/StudentProgress`}>
                         <StudentProgress/>
+                    </Route>
+                    <Route path={`${match.path}/DashboardVolunteer`}>
+                        <DashboardVolunteer/>
                     </Route>
                 </Switch>
             </Router>
