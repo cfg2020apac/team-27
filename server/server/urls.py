@@ -26,6 +26,8 @@ from server.views.volunteers import Volunteers
 from server.views.contact import Contact
 from server.views.milestones import Milestones, post_milestones
 from server.views.meetings import Meetings
+from server.views.announcements import Announcements, post_announcements
+
 import sys, os
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__package__))
@@ -44,5 +46,7 @@ urlpatterns = [
     path('contact/', Contact.as_view(), name='get-contact'),
     path('milestones/<int:id>', Milestones.as_view(), name='get-milestones'),
     path('milestones/', post_milestones),
+    path('announcements/', Announcements.as_view(), name='get-announcements'),
+    path('announcements-add/', post_announcements),
     path('meetings/<int:id>', Meetings.as_view(), name='get-meetings'),
 ]
