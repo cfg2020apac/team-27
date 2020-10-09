@@ -1,25 +1,60 @@
 import React, { useState } from "react";
 import {
     useRouteMatch,
+    useHistory,
     Route,
     BrowserRouter as Router,
     Switch,
     Redirect,
     Link,
 } from "react-router-dom";
-import { Navbar, Nav, NavItem } from "react-bootstrap";
+import { Navbar, Nav, NavItem,Dropdown,DropdownButton, NavDropdown } from "react-bootstrap";
 import JA from "../JA.png";
 import Home from "./Home";
 import Dashboard from "./Dashboard";
 import Meetings from "./Meetings";
 import MyProfile from "./MyProfile";
 import Milestones from "./Milestones";
-import { DoorClosed, PersonCircle } from "react-bootstrap-icons";
+import { DoorClosed, PersonCircle,Bell,StarFill,CheckCircle,ExclamationCircleFill } from "react-bootstrap-icons";
+import './Root.css';
+import Announcement from "./Announcement/Announcement";
+import SingleAnnouncement from "./Announcement/SingleAnnouncement";
 import StudentProgress from "./StudentProgress";
 
 function Root() {
     let match = useRouteMatch();
+    const history = useHistory();
+    const notifications = [
+        {
+            'title':'Announcement 1',
+            'type':'star'
+        },
+        {
+            'title':'Announcement 2',
+            'type':'good'
+        },
+        {
+            'title':'Announcement 3',
+            'type':'bad'
+        },
+    ]
 
+    const typeIcon = (type)=>{
+        switch(type){
+            case 'star':
+                return <span style={{paddingLeft:"5px"}}><StarFill size={23} color="#a8a232"/></span>
+            case 'good':
+                return <span style={{paddingLeft:"5px"}}><CheckCircle size={20} color="green"/></span>
+            case 'bad':
+                return <span style={{paddingLeft:"5px"}}><ExclamationCircleFill size={20} color="red"/></span>
+        }
+    }
+
+    const navToNotifcations = ()=>{
+        // history.push("/root/Announcements")
+        // history.push("/Announcements")
+        // console.log("Notifications:",history)
+    }
     return (
         <div>
             <Router>
@@ -59,7 +94,18 @@ function Root() {
                                 </Nav.Link>
                             </NavItem>
                         </Nav>
-                        <PersonCircle size={30} />
+                        <span style={{paddingRight:"30px"}}>
+                            <NavDropdown title={<Bell color="#000" size={27}/>} id="basic-nav-dropdown" cssClass='e-caret-hide'>
+                            {
+                                notifications.map((e)=>{
+                                    return <NavDropdown.Item>{[e.title,typeIcon(e.type)]}</NavDropdown.Item>
+                                })
+                            }
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item><Link to={`${match.path}/Announcements`}>All Announcements</Link></NavDropdown.Item> 
+                            </NavDropdown>
+                        </span>
+                        <PersonCircle size={27} />
                         <span
                             style={{
                                 paddingRight: "20px",
@@ -68,7 +114,7 @@ function Root() {
                         >
                             Kevin - Student
                         </span>
-                        <DoorClosed size={30} />
+                        <DoorClosed size={27}/>
                     </Navbar.Collapse>
                 </Navbar>
                 <Switch>
@@ -93,6 +139,9 @@ function Root() {
                     </Route>
                     <Route path={`${match.path}/Milestones`}>
                         <Milestones />
+                    </Route>
+                    <Route path={`${match.path}/Announcements`}>
+                        <Announcement />
                     </Route>
                     <Route path={`${match.path}/StudentProgress`}>
                         <StudentProgress/>
