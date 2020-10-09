@@ -8,8 +8,9 @@ import {
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 
-const toDoStyle = { background: "rgb(255,140,0)", color: "#fff" };
-const finishedStyle = { background: "rgb(16, 204, 82)", color: "#fff" };
+const toDoStyle = { background: "white", color: "black", opacity: "0.5" };
+const finishedStyle = { background: "white", color: "black", opacity: "0.5" };
+const currStyle = { background: "white", color: "black" , opacity: "1"};
 
 export default function Milestones() {
     const [contents, setContents] = useState([]);
@@ -23,6 +24,15 @@ export default function Milestones() {
                         if (t.type === "finished") {
                             return {
                                 type: "finished",
+                                date: t.date,
+                                content: {
+                                    title: t.title,
+                                    desc: t.desc,
+                                },
+                            };
+                        } else if (t.type === "current") {
+                            return {
+                                type: "current",
                                 date: t.date,
                                 content: {
                                     title: t.title,
@@ -76,11 +86,13 @@ export default function Milestones() {
     }
 
     return (
-        <VerticalTimeline>
-            {contents.map((t) => {
-                if (t.type === "todo") {
+        <VerticalTimeline animate={false}>
+            {contents.map((t, index) => {
+                if (t.type === "finished") {
+                    console.log("Finished!!");
                     return (
                         <VerticalTimelineElement
+                            key={index}
                             className="vertical-timeline-element--work"
                             contentStyle={finishedStyle}
                             contentArrowStyle={finishedStyle}
@@ -88,31 +100,48 @@ export default function Milestones() {
                             date={t.date}
                             icon={<FaCheckCircle />}
                         >
-                            <h3 className="vertical-timeline-element-title">
-                                {t.content.title}
-                            </h3>
-                            <h4 className="vertical-timeline-element-subtitle">
-                                Done
-                            </h4>
-                            <p>{t.content.desc}</p>
+                            <div style={{textAlign: "left"}}>
+                                <h5 className="vertical-timeline-element-title">
+                                    {t.content.title}
+                                </h5>
+                            </div>
                         </VerticalTimelineElement>
                     );
+                } else if (t.type === "current") {
+                    console.log("current!!!");
+                    return (
+                        <VerticalTimelineElement
+                            key={index}
+                            className="vertical-timeline-element--work"
+                            contentStyle={currStyle}
+                            contentArrowStyle={currStyle}
+                            iconStyle={currStyle}
+                            date={t.date}
+                            icon={<FaCheckCircle />}
+                        >
+                            <div style={{textAlign: "left"}}>
+                                <h5 className="vertical-timeline-element-title">
+                                    {t.content.title}
+                                </h5>
+                            </div>
+                        </VerticalTimelineElement>
+                    )
                 } else {
                     return (
                         <VerticalTimelineElement
+                            key={index}
                             iconStyle={toDoStyle}
                             contentStyle={toDoStyle}
                             contentArrowStyle={toDoStyle}
                             date={t.date}
                             icon={<FaExclamationCircle />}
                         >
-                            <h3 className="vertical-timeline-element-title">
-                                {t.content.title}
-                            </h3>
-                            <h4 className="vertical-timeline-element-subtitle">
-                                To-do
-                            </h4>
-                            <p>{t.content.desc}</p>
+                            <div style={{textAlign: "left"}}>
+                                <h5 className="vertical-timeline-element-title">
+                                    {t.content.title}
+                                </h5>
+                                <p>{t.content.desc}</p>
+                            </div>
                         </VerticalTimelineElement>
                     );
                 }
