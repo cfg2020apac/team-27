@@ -36,7 +36,7 @@ export default function DashboardVolunteer(){
                 <p style={{color: "white"}}>Wish you all the best. Stay healthy and happy.</p>
             </Jumbotron>
 
-            <Jumbotron align="left" className="module" fluid>    
+            <Jumbotron align="left" className="module">    
                 <Form.Text className="text-muted mb-0">Upcoming Deadlines</Form.Text>
                 <h1>Check the progress of your mentees</h1>
                 <div className="d-flex flex-row justify-content-between mb-2">
