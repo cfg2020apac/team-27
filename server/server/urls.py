@@ -20,6 +20,9 @@ from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 
+import datascience.dashapp-wip
+from django_plotly_dash.views import add_to_session
+
 from server.views.students import Students
 from server.views.program import Program
 from server.views.volunteers import Volunteers
