@@ -54,15 +54,24 @@ function Login(props){
                             title={userType}
                             onSelect={(key,event)=>{setuserType(key)}}
                             >
-                            <Dropdown.Item eventKey={userTypes[0]} onClick={() => {window.location = "http://localhost:8900"}}>{userTypes[0]}</Dropdown.Item>
+                            <Dropdown.Item eventKey={userTypes[0]}>{userTypes[0]}</Dropdown.Item>
                             <Dropdown.Item eventKey={userTypes[1]}>{userTypes[1]}</Dropdown.Item>
                             <Dropdown.Item eventKey={userTypes[2]}>{userTypes[2]}</Dropdown.Item>
                         </DropdownButton>
-                        <Link to={`/root/${userType}`}>
-                            <Button variant="primary" type="submit" >
-                                Login
-                            </Button>
-                        </Link>
+                        {
+                            userType==="Admin"?
+                            <Link to={`/external`}>
+                                <Button variant="primary" type="submit" >
+                                    Login
+                                </Button>
+                            </Link>
+                            :
+                            <Link to={`/root/${userType}`}>
+                                <Button variant="primary" type="submit" >
+                                    Login
+                                </Button>
+                            </Link>
+                        }
                     </Form>
                 </Col>
             </Row>

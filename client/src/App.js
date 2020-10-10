@@ -20,6 +20,10 @@ function App() {
         <Route path="/signup"><Signup/></Route> */}
         <Route path="/root/:userType"><Root/></Route> 
         <Route path="/landing"><Landing/></Route> 
+        <Route path='/external' component={() => { 
+            window.location.href = 'http://localhost:8900'; 
+            return null;
+        }}/>
       </Switch>
     </div>
   );
